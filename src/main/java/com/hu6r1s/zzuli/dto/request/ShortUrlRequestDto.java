@@ -1,4 +1,4 @@
-package com.hu6r1s.zzuli.controller;
+package com.hu6r1s.zzuli.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
