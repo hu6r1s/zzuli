@@ -5,6 +5,8 @@ import com.hu6r1s.zzuli.dto.response.OriginalUrlResponseDto;
 import com.hu6r1s.zzuli.dto.response.ShortUrlResponseDto;
 import com.hu6r1s.zzuli.service.ShortUrlService;
 import global.response.CommonResponse;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,10 +34,14 @@ public class ShortUrlController {
   }
 
   @GetMapping("/{shortUrl}")
-  public ResponseEntity<CommonResponse<OriginalUrlResponseDto>> redirect(
+  public ResponseEntity<CommonResponse<Void>> redirect(
       @PathVariable String shortUrl
   ) {
     OriginalUrlResponseDto response = shortUrlService.redirect(shortUrl);
-    return CommonResponse.ok(response, HttpStatus.OK.getReasonPhrase());
+//    return CommonResponse.redirection(response.getOriginalUrl(),
+//        HttpStatus.MOVED_PERMANENTLY.getReasonPhrase());
+    return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
+        .header("Location", response.getOriginalUrl())
+        .body(null);
   }
 }
