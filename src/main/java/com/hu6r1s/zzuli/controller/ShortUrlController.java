@@ -38,10 +38,7 @@ public class ShortUrlController {
       @PathVariable String shortUrl
   ) {
     OriginalUrlResponseDto response = shortUrlService.redirect(shortUrl);
-//    return CommonResponse.redirection(response.getOriginalUrl(),
-//        HttpStatus.MOVED_PERMANENTLY.getReasonPhrase());
-    return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
-        .header("Location", response.getOriginalUrl())
-        .body(null);
+    return CommonResponse.redirection(response.getOriginalUrl(),
+        HttpStatus.MOVED_PERMANENTLY.getReasonPhrase());
   }
 }
