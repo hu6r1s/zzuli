@@ -1,5 +1,6 @@
 package com.hu6r1s.zzuli.controller;
 
+import com.hu6r1s.zzuli.dto.ShortUrlRequestDto;
 import com.hu6r1s.zzuli.dto.ShortUrlResponseDto;
 import com.hu6r1s.zzuli.service.ShortUrlService;
 import global.response.CommonResponse;

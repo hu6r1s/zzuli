@@ -1,6 +1,6 @@
 package com.hu6r1s.zzuli.service;
 
-import com.hu6r1s.zzuli.controller.ShortUrlRequestDto;
+import com.hu6r1s.zzuli.dto.ShortUrlRequestDto;
 import com.hu6r1s.zzuli.dto.ShortUrlResponseDto;
 import com.hu6r1s.zzuli.entity.ShortenUrl;
 import com.hu6r1s.zzuli.repository.ShortUrlRepository;
