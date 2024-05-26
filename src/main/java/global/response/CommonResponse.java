@@ -21,10 +21,13 @@ public class CommonResponse<T> {
         );
   }
 
-  public static ResponseEntity<CommonResponse<Void>> redirection(String target,
-      String message) {
+  public static <T> ResponseEntity<CommonResponse<T>> redirection(
+      T data,
+      String message,
+      String target
+  ) {
     return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
         .header("Location", target)
-        .body(CommonResponse.<Void>builder().data(null).message(message).build());
+        .body(CommonResponse.<T>builder().data(data).message(message).build());
   }
 }

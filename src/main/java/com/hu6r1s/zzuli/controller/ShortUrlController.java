@@ -34,11 +34,14 @@ public class ShortUrlController {
   }
 
   @GetMapping("/{shortUrl}")
-  public ResponseEntity<CommonResponse<Void>> redirect(
+  public ResponseEntity<CommonResponse<OriginalUrlResponseDto>> redirect(
       @PathVariable String shortUrl
   ) {
     OriginalUrlResponseDto response = shortUrlService.redirect(shortUrl);
-    return CommonResponse.redirection(response.getOriginalUrl(),
-        HttpStatus.MOVED_PERMANENTLY.getReasonPhrase());
+    return CommonResponse.redirection(
+        response,
+        HttpStatus.MOVED_PERMANENTLY.getReasonPhrase(),
+        response.getOriginalUrl()
+    );
   }
 }
