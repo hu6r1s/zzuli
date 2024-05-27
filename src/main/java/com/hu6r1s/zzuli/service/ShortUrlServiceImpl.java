@@ -56,11 +56,10 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
   private String idToHangul(Long id) {
     StringBuilder result = new StringBuilder();
-    long base = 19 * 21 * 28;
 
     while (id > 0) {
-      long remainder = (id - 1) % base;
-      id = (id - 1) / base;
+      long remainder = (id - 1) % BASE;
+      id = (id - 1) / BASE;
 
       result.append(convertToHangul(remainder));
     }
@@ -70,18 +69,15 @@ public class ShortUrlServiceImpl implements ShortUrlService {
   }
 
   private String convertToHangul(long value) {
-    int chosungCount = 19;
-    int jungsungCount = 21;
-    int jongsungCount = 28;
 
-    int chosung = (int) (value % chosungCount);
-    value /= chosungCount;
+    int chosung = (int) (value % CHOSUNG_COUNT);
+    value /= CHOSUNG_COUNT;
 
-    int jungsung = (int) (value % jungsungCount);
-    int jongsung = (int) (value / jungsungCount);
+    int jungsung = (int) (value % JUNGSUNG_COUNT);
+    int jongsung = (int) (value / JUNGSUNG_COUNT);
 
-    char unicode = (char) (44032 + (chosung * jungsungCount * jongsungCount) + (jungsung
-        * jongsungCount) + jongsung);
+    char unicode = (char) (44032 + (chosung * JUNGSUNG_COUNT * JONGSUNG_COUNT) + (jungsung
+        * JONGSUNG_COUNT) + jongsung);
     return Character.toString(unicode);
   }
 
