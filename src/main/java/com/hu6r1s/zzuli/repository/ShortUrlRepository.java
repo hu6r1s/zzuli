@@ -1,8 +1,10 @@
 package com.hu6r1s.zzuli.repository;
 
 import com.hu6r1s.zzuli.entity.ShortenUrl;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ShortUrlRepository extends JpaRepository<ShortenUrl, Long> {
+@Repository
+public interface ShortUrlRepository extends MongoRepository<ShortenUrl, Long> {
 
 }
