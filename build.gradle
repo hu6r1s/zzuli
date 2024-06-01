@@ -22,8 +22,15 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation "org.springframework.boot:spring-boot-starter-log4j2"
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
