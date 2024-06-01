@@ -39,9 +39,11 @@ public class ShortUrlServiceImpl implements ShortUrlService {
   public OriginalUrlResponseDto redirect(String shortUrl) {
     long id = hangulToId(shortUrl);
 
-    log.info("redirect : {}", id);
     ShortenUrl shortenUrl = shortUrlRepository.findById(id)
         .orElseThrow(NullPointerException::new);
+
+    log.info("Redirect URL ID : {}", id);
+    log.info("Redirect URL : {}", shortenUrl.getOriginalUrl());
 
     return new OriginalUrlResponseDto(shortenUrl.getOriginalUrl());
   }
@@ -50,7 +52,8 @@ public class ShortUrlServiceImpl implements ShortUrlService {
     try {
       new URL(url);
     } catch (MalformedURLException e) {
-      throw new MalformedURLException("Invalid URL");
+      log.error("Malformed URL : {}", e);
+      throw e;
     }
   }
 
@@ -64,7 +67,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
       result.append(convertToHangul(remainder));
     }
 
-    log.info("shorten url : {}", result);
+    log.info("Shorted URL : {}", result);
     return result.toString();
   }
 
