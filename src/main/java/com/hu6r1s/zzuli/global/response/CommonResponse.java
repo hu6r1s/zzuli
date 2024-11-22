@@ -1,4 +1,4 @@
-package global.response;
+package com.hu6r1s.zzuli.global.response;
 
 import lombok.Builder;
 import lombok.Getter;
